@@ -1,6 +1,8 @@
-export interface User {
-  name: string,
-  surname: string,
-  age: number,
-  dni: string
+export class User {
+  constructor(
+    public name: string,
+    public surname: string,
+    public age: number,
+    public dni: string
+  ) { }
 };
