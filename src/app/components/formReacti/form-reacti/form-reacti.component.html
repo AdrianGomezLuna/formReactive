@@ -1,0 +1,31 @@
+<form class="data-form" [formGroup]="reactiveForm">
+    <div class="data-box">
+        <label>Nombre:</label>
+        <input type="text" id="name" name="name" formControlName="name">
+        <!-- <span [hidden]="usuario.name.dirty && name.value !== ''" class="error-input">El nombre es obligatorio</span>
+        <span *ngIf="name.errors?.minlength || name.errors?.maxlength" class="error-input">Longitud entre 4 y 25 caractéres</span> -->
+    </div>
+    <div class="data-box">
+        <label>Apellidos:</label>
+        <input type="text" id="surname" name="surname" formControlName="surname">
+        <!-- <span [hidden]="name.dirty && name.value !== ''" class="error-input">El nombre es obligatorio</span>
+      <span *ngIf="name.errors?.minlength || name.errors?.maxlength" class="error-input">Longitud entre 4 y 25 caractéres</span> -->
+    </div>
+    <div class="data-box">
+        <label>Edad:</label>
+        <input type="number" id="age" name="age" formControlName="age">
+        <!-- <span [hidden]="name.dirty && name.value !== ''" class="error-input">El nombre es obligatorio</span>
+    <span *ngIf="name.errors?.minlength || name.errors?.maxlength" class="error-input">Longitud entre 4 y 25 caractéres</span> -->
+    </div>
+    <div class="data-box">
+        <label>DNI:</label>
+        <input type="text" id="dni" name="dni" formControlName="dni">
+        <!-- <span [hidden]="name.dirty && name.value !== ''" class="error-input">El nombre es obligatorio</span>
+  <span *ngIf="name.errors?.minlength || name.errors?.maxlength" class="error-input">Longitud entre 4 y 25 caractéres</span> -->
+    </div>
+    <button (click)="onSubmit()">Enviar</button>
+</form>
+
+<p *ngFor="let item of usuarios">
+    {{ item |json }}
+</p>
