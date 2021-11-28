@@ -8,6 +8,7 @@
     display: grid;
     grid-template-columns: 60% 30%;
     justify-content: space-between;
+    align-items: center;
     .data-form {
         margin-top: 20px;
         padding: 10px;
@@ -20,7 +21,7 @@
 
 .data-box {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     margin-bottom: 20px;
     position: relative;
     flex-wrap: wrap;

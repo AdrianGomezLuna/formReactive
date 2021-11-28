@@ -3,30 +3,34 @@
         <div class="cuerpo-form">
             <form class="data-form" [formGroup]="reactiveForm">
                 <div class="data-box">
-                    <label>Nombre:</label>
-                    <input type="text" id="name" name="name" formControlName="name">
-                    <span [hidden]="name.dirty && name.value !== ''" class="error-input">El nombre es obligatorio</span>
-                    <span *ngIf="name.errors?.minlength || name.errors?.maxlength" class="error-input">Longitud entre 4 y 25 carácteres</span>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Nombre: </mat-label>
+                        <input matInput type="text" id="name" name="name" formControlName="name">
+                        <mat-error *ngIf="reactiveForm.value.name ===''">El nombre es obligatorio</mat-error>
+                    </mat-form-field>
                 </div>
                 <div class="data-box">
-                    <label>Apellidos:</label>
-                    <input type="text" id="surname" name="surname" formControlName="surname">
-                    <span [hidden]="surname.dirty && surname.value !== ''" class="error-input">El apellido es obligatorio</span>
-                    <span *ngIf="surname.errors?.minlength || surname.errors?.maxlength" class="error-input">Longitud entre 4 y 25 carácteres</span>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Apellidos:</mat-label>
+                        <input matInput type="text" id="surname" name="surname" formControlName="surname">
+                        <mat-error *ngIf="reactiveForm.value.surname ==='' ">El apellido es obligatorio</mat-error>
+                    </mat-form-field>
                 </div>
                 <div class="data-box">
-                    <label>Edad:</label>
-                    <input type="number" id="age" name="age" formControlName="age">
-                    <span [hidden]="age.dirty && age.value !== ''" class="error-input">La edad es obligatoria</span>
-                    <span *ngIf="age.errors?.minlength || age.errors?.maxlength" class="error-input">Longitud entre 4 y 25 carácteres</span>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Edad: </mat-label>
+                        <input matInput type="number" id="age" name="age" formControlName="age">
+                        <mat-error *ngIf="reactiveForm.controls.age.status !== 'VALID' ">La edad es obligatoria</mat-error>
+                    </mat-form-field>
                 </div>
                 <div class="data-box">
-                    <label>DNI:</label>
-                    <input type="text" id="dni" name="dni" formControlName="dni">
-                    <span [hidden]="dni.dirty && dni.value !== ''" class="error-input">El DNI es obligatorio</span>
-                    <span *ngIf="dni.errors?.minlength || dni.errors?.maxlength" class="error-input">Longitud de 9 carácteres</span>
+                    <mat-form-field appearance="fill">
+                        <mat-label>DNI: </mat-label>
+                        <input matInput type="text" id="dni" name="dni" formControlName="dni">
+                        <mat-error *ngIf="reactiveForm.controls.dni !== 'VALID' ">El DNI es obligatorio</mat-error>
+                    </mat-form-field>
                 </div>
-                <button class="text-center" (click)="onSubmit()" [disabled]="!reactiveForm.valid">Enviar</button>
+                <button mat-raised-button color="primary" class="text-center" (click)="onSubmit()" [disabled]="!reactiveForm.valid">Enviar</button>
             </form>
         </div>
         <div class="cuerpo-select">
@@ -35,7 +39,7 @@
                     <label>Busqueda por edad: </label>
                     <input type="number" id="selectEdad" [(ngModel)]="selectEdad" name="selectEdad">
                 </div>
-                <button type="submit" [disabled]="!templateForm.form.valid">Enviar</button>
+                <button mat-raised-button color="primary" type="submit" [disabled]="!templateForm.form.valid">Enviar</button>
             </form>
         </div>
 
