@@ -3,6 +3,7 @@ export class User {
     public name: string,
     public surname: string,
     public age: number,
-    public dni: string
+    public dni: string,
+    public selected?: boolean
   ) { }
 };

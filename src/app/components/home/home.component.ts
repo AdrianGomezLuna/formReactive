@@ -1,35 +1,38 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, Validators } from '@angular/forms';
 import { User } from 'src/app/models/user.interface';
-import { UserServiceService } from 'src/app/services/user-service.service';
+import { UserServiceService } from '../../services/user-service.service';
 
 @Component({
-  selector: 'app-form-reacti',
-  templateUrl: './form-reacti.component.html',
-  styleUrls: ['./form-reacti.component.scss']
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.scss']
 })
-export class FormReactiComponent implements OnInit {
+export class HomeComponent implements OnInit {
 
   public usuario: User;
+  public users: User[] = [];
   public reactiveForm: any;
-  public usuarios: User[] = [];
   public selectEdad: number = 0;
+  public index: number = 0;
 
-
-  constructor(private fb: FormBuilder, private userService: UserServiceService) {
-    this.usuario = new User('', '', 0 , '');
-    this.reactiveForm = this.fb.group({
-      name: ['', [Validators.required,  Validators.maxLength(100)]],
-      surname: ['', [Validators.required,  Validators.maxLength(100)]],
-      age: ['', [Validators.required, Validators.min(1),Validators.max(100)]],
-      dni: ['', [Validators.required, Validators.minLength(9), Validators.maxLength(9), this.validatorDNI]]
-    });
-    this.selectEdad = 0;
-   }
+  constructor(private userService: UserServiceService, public fb: FormBuilder) {
+      this.users = this.userService.getUser();
+      this.usuario = new User('', '', 0 , '');
+      this.reactiveForm = this.fb.group({
+        name: ['', [Validators.required,  Validators.maxLength(100)]],
+        surname: ['', [Validators.required,  Validators.maxLength(100)]],
+        age: ['', [Validators.required, Validators.min(1),Validators.max(100)]],
+        dni: ['', [Validators.required, Validators.minLength(9), Validators.maxLength(9), this.validatorDNI]]
+      });
+      this.selectEdad = 0;
+  }
 
   ngOnInit(): void {
-    this.usuarios = this.userService.getUser();
+
   }
+
+
 
   onSubmit() {
     console.log(this.reactiveForm);
@@ -42,11 +45,23 @@ export class FormReactiComponent implements OnInit {
       this.usuario.dni = this.reactiveForm.get('dni').value;
 
       this.userService.addUser(this.usuario);
-      this.usuarios = this.userService.getUser();
+      this.users = this.userService.getUser();
       this.usuario = new User('', '', 0 , '');
       this.reset();
     } else {
       console.log('No valido');
+    }
+  }
+
+  onSubmit2(){
+
+    for (let index = 0; index < this.users.length; index++) {
+      if (this.users[index].age === this.selectEdad) {
+        this.users[index].selected = true;
+      } else {
+        this.users[index].selected = false;
+      }
+
     }
   }
 
@@ -83,18 +98,11 @@ export class FormReactiComponent implements OnInit {
     // this.reactiveForm.surname.value = '';
     // this.reactiveForm.dni.value = '';
     // this.reactiveForm.age.value = '';
-  console.log(this.reactiveForm.controls.name.value);
-  }
-
-  onSubmit2() {
-
-    console.log('Edad seleccionada:',this.selectEdad);
-
+    console.log(this.reactiveForm.controls.name.value);
   }
 
   get name() {return this.reactiveForm.get('name');}
   get surname() {return this.reactiveForm.get('surname');}
   get dni() {return this.reactiveForm.get('dni');}
   get age() {return this.reactiveForm.get('age');}
-
 }

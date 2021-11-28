@@ -1,1 +1,22 @@
-<p>card works!</p>
+<div class="cuerpo" [ngClass]="{selected : user.selected === true}" (click)="selectCard()">
+    <mat-card>
+        <mat-card-title class="text-center">
+            Tarjeta Usuario
+        </mat-card-title>
+        <mat-card-content>
+            <label class="col-md-6 col-sm-12 text-center" apperance="outline">
+                Nombre: {{user.name}}
+            </label>
+            <label class="col-md-6 col-sm-12 text-center" apperance="outline">
+                Apellidos: {{user.surname}}
+            </label>
+            <label class="col-md-6 col-sm-12 text-center" apperance="outline">
+              DNI: {{user.dni}}
+            </label>
+            <label class="col-md-6 col-sm-12 text-center" apperance="outline">
+              Edad: {{user.age}}
+            </label>
+        </mat-card-content>
+        <button class="btn btn-primary" (click)="deleteItem()">Eliminar</button>
+    </mat-card>
+</div>

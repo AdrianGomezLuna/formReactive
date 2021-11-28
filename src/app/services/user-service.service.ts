@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Observable, Subject } from 'rxjs';
 import { User } from '../models/user.interface';
 
 @Injectable({
@@ -7,8 +8,8 @@ import { User } from '../models/user.interface';
 export class UserServiceService {
 
   private users: User[] = []
-  // private estado = new Subject<any>();
-	// public  estado$ = this.estado.asObservable();
+  private estado = new Subject<any>();
+	public estado$ = this.estado.asObservable();
 
   constructor() { }
 
@@ -20,7 +21,12 @@ export class UserServiceService {
     this.users.push(user);
   }
 
-  public selectUser(user: string){
-    // this.estado.next(user);
+  public selectUser(edad: number){
+    this.estado.next(edad);
+  }
+
+  public deleteUser(user: User){
+    const encontrado = this.users.indexOf(user);
+    this.users.splice( encontrado , 1);
   }
 }

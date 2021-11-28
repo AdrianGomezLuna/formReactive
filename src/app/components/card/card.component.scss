@@ -1,0 +1,15 @@
+.cuerpo {
+    width: 400px;
+    margin: 20px;
+    background: cornflowerblue;
+    text-align: center;
+    border: 1px solid black;
+    mat-card {
+        display: inline-block;
+    }
+}
+
+.selected {
+    border: 2px solid #B60303;
+    background-color: #EF2C2C;
+}
